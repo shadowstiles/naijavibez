@@ -1,0 +1,148 @@
+@import "../../../index.scss";
+
+/*---------------------------------------------------------
+     Navigation Section
+---------------------------------------------------------*/
+
+/* nav and stickly class at the same time */
+
+.sticky {
+  position: fixed;
+  background-color: rgba($color-primary, 0.5);
+  opacity: 0.9 !important;
+}
+
+.nav {
+  z-index: 50000;
+  transition: transform 1s, opacity 1s;
+  display: block;
+
+  .nav--bigger--screen,
+  .nav--smaller--screen {
+    font-size: 20px;
+    background-color: $color-primary;
+    padding: 20px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 40px;
+    }
+  }
+}
+
+.nav--bigger--screen {
+  display: flex;
+
+  &__links {
+    display: flex;
+  }
+
+  &__item {
+    list-style: none;
+    &:not(:last-child) {
+      padding-right: 30px;
+    }
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: $color-grey-light-1;
+    transition: all 0.3s;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    list-style: none;
+    padding-right: 25px;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: $color-grey-light-1;
+    transition: all 0.3s;
+  }
+}
+
+/*---------------------------------------------------------
+     Logo Section
+---------------------------------------------------------*/
+.logo {
+  font-family: $font-heading;
+  font-weight: 500;
+  padding: 0 30px;
+  font-size: 35px;
+  font-weight: 400;
+  margin-left: 20px;
+
+  @media only screen and (max-width: $bp-smallest) {
+    padding: 0 15px;
+    font-size: 30px;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: $color-grey-light-1;
+    transition: all 0.3s;
+  }
+}
+
+/*---------------------------------------------------------
+     Search Section
+---------------------------------------------------------*/
+.search {
+  flex: 0 0 40%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: rgba($color-grey-light-1, 0.4);
+    border: none;
+    padding: 7px 20px;
+    border-radius: 1000px;
+    width: 90%;
+    transition: all 0.2s;
+    margin-right: -32.5px;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: $color-grey-light-1;
+    }
+  }
+
+  &__input:focus + &__button {
+    background-color: rgba($color-grey-light-1, 0.1);
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(20px);
+    }
+  }
+}

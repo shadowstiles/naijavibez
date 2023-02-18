@@ -1,0 +1,28 @@
+@import "../../index.scss";
+
+.spinner {
+  margin: 10rem auto;
+  text-align: center;
+
+  svg {
+    height: 6rem;
+    width: 6rem;
+    fill: $color-primary;
+    animation: rotate 2s infinite linear;
+
+    @media only screen and (max-width: $bp-smallest) {
+      height: 10rem;
+      width: 10rem;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

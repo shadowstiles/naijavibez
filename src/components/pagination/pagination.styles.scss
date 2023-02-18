@@ -1,0 +1,66 @@
+@import "../../index.scss";
+
+.pagination {
+  margin-top: auto;
+  padding: 0 35px;
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  &__btn {
+    &--prev {
+      float: left;
+      margin-right: 10px;
+    }
+    &--next {
+      float: right;
+    }
+  }
+}
+
+.btn--inline {
+  color: $color-primary-dark;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  background-color: #0d1722;
+  padding: 8px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 20px;
+  }
+
+  svg {
+    height: 16px;
+    width: 16px;
+    fill: currentColor;
+    margin: 0 2px;
+
+    @media only screen and (max-width: $bp-smaller) {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  span {
+    margin: 0 4px;
+  }
+
+  &:hover {
+    color: $color-grad-2;
+    background-color: $color-secondary;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
