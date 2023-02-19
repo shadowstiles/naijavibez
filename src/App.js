@@ -11,9 +11,9 @@ import { NewsContext } from "./context/news.context";
 import Spinner from "./components/spinner/spinner.component";
 import Slide from "./components/swiper/swiper.component";
 import Post from "./components/posts/post.component";
+import Entertainment from "./components/posts/entertainment.component";
 import Sports from "./components/posts/sports.component";
-import Business from "./components/posts/business.component";
-import Lifestyle from "./components/posts/lifestyle.component";
+import Politics from "./components/posts/politics.component";
 import SinglePost from "./components/single-post/single-post.component";
 import SearchResult from "./components/search-result/search-result.component";
 import Category from "./components/category/category.component";
@@ -74,9 +74,9 @@ const App = () => {
               <Fragment>
                 <Slide />
                 <Post />
+                <Entertainment />
                 <Sports />
-                <Business />
-                <Lifestyle />
+                <Politics />
               </Fragment>
             )
           }

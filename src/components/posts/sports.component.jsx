@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { setDate } from "../..";
 import { NewsContext } from "../../context/news.context";
@@ -7,12 +8,7 @@ import PostEntryBottom from "./post-entry-bottom.component";
 import "./posts.style.scss";
 
 const Sports = () => {
-  const { finalNews } = useContext(NewsContext);
-
-  // const sportsNews = finalNews.filter((news) => news.category === "sports");
-
-  //This will be deleted on publication
-  const sportsNews = finalNews;
+  const { sportsNews } = useContext(NewsContext);
 
   const {
     imageurl,
@@ -60,20 +56,20 @@ const Sports = () => {
         <div className="row">
           <div className="col-md-9">
             <div className="d-lg-flex post-entry-2">
-              <a
-                href="single-post.html"
+              <Link
+                to={`news/category/sports/${heading}`}
                 className="me-4 thumbnail mb-4 mb-lg-0 d-inline-block"
               >
                 <img src={imageurl} alt="" className="img-fluid" />
-              </a>
+              </Link>
               <div>
                 <div className="post-meta">
-                  <span className="date">Sports</span>{" "}
-                  <span className="mx-1">&bullet;</span>{" "}
+                  <span className="date">Sports</span>
+                  <span className="mx-1">•</span>
                   <span>{setDate(published)}</span>
                 </div>
                 <h3>
-                  <a href="single-post.html">{heading}</a>
+                  <Link to={`news/category/sports/${heading}`}>{heading}</Link>
                 </h3>
                 <p>{paragraphbrief}</p>
                 <div className="d-flex align-items-center author">
@@ -90,16 +86,18 @@ const Sports = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="post-entry-1 border-bottom">
-                  <a href="single-post.html">
+                  <Link to={`news/category/sports/${heading2}`}>
                     <img src={imageurl2} alt="" className="img-fluid" />
-                  </a>
+                  </Link>
                   <div className="post-meta">
-                    <span className="date">Sports</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Sports</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published2)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading2}</a>
+                    <Link to={`news/category/sports/${heading2}`}>
+                      {heading2}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author2}</span>
                   <p className="mb-4 d-block">{paragraphbrief2}</p>
@@ -107,12 +105,14 @@ const Sports = () => {
 
                 <div className="post-entry-1">
                   <div className="post-meta">
-                    <span className="date">Sports</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Sports</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published4)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading4}</a>
+                    <Link to={`news/category/sports/${heading4}`}>
+                      {heading4}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author4}</span>
                 </div>
@@ -123,12 +123,14 @@ const Sports = () => {
                     <img src={imageurl3} alt="" className="img-fluid" />
                   </a>
                   <div className="post-meta">
-                    <span className="date">Sports</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Sports</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published3)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading3}</a>
+                    <Link to={`news/category/sports/${heading3}`}>
+                      {heading3}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author3}</span>
                   <p className="mb-4 d-block">{paragraphbrief3}</p>
@@ -141,7 +143,7 @@ const Sports = () => {
             {sportsNews
               .filter((_, i) => i > 4 && i < 10)
               .map((news) => (
-                <PostEntryBottom news={news} />
+                <PostEntryBottom news={news} key={news.newsid} />
               ))}
           </div>
         </div>

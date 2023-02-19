@@ -6,6 +6,7 @@ import PostEntry from "./post-entry.component";
 import Trending from "./trending.component";
 
 import "./posts.style.scss";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const { finalNews } = useContext(NewsContext);
@@ -19,16 +20,19 @@ const Post = () => {
         <div className="row g-5">
           <div className="col-lg-4">
             <div className="post-entry-1 lg">
-              <a href="single-post.html">
+              <Link to={`news/category/${category}/${heading}`}>
                 <img src={imageurl} alt="" className="img-fluid" />
-              </a>
+              </Link>
+
               <div className="post-meta">
-                <span className="date">{category}</span>{" "}
-                <span className="mx-1">&bullet;</span>{" "}
+                <span className="date">{category}</span>
+                <span className="mx-1">•</span>
                 <span>{setDate(published)}</span>
               </div>
               <h2>
-                <a href="single-post.html">{heading}</a>
+                <Link to={`news/category/${category}/${heading}`}>
+                  {heading}
+                </Link>
               </h2>
               <p className="mb-4 d-block">{paragrahpbrief}</p>
 
@@ -46,14 +50,14 @@ const Post = () => {
                 {finalNews
                   .filter((_, i) => i > 0 && i < 4)
                   .map((news) => (
-                    <PostEntry news={news} />
+                    <PostEntry news={news} key={news.newsid} />
                   ))}
               </div>
               <div className="col-lg-4 border-start custom-border">
                 {finalNews
                   .filter((_, i) => i > 3 && i < 7)
                   .map((news) => (
-                    <PostEntry news={news} />
+                    <PostEntry news={news} key={news.newsid} />
                   ))}
               </div>
 

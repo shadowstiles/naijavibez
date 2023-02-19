@@ -6,7 +6,6 @@ import "./footer.style.scss";
 
 const Footer = () => {
   const { finalNews } = useContext(NewsContext);
-  use;
 
   return (
     <footer id="footer" className="footer">
@@ -110,7 +109,7 @@ const Footer = () => {
                 {finalNews
                   .filter((_, i) => i < 4)
                   .map((news) => (
-                    <FooterNews news={news} />
+                    <FooterNews news={news} key={news.newsid} />
                   ))}
               </ul>
             </div>

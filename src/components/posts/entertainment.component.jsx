@@ -1,20 +1,16 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { setDate } from "../..";
 import { NewsContext } from "../../context/news.context";
 import PostEntryBottom from "./post-entry-bottom.component";
 
 import "./posts.style.scss";
 
-const Business = () => {
-  const { finalNews } = useContext(NewsContext);
-
-  // const BusinessNews = finalNews.filter((news) => news.category === "business");
-
-  //This will be deleted on publication
-  const BusinessNews = finalNews;
+const Entertainment = () => {
+  const { EntertainmentNews } = useContext(NewsContext);
 
   const { imageurl, heading, published, paragraphbrief, author } =
-    BusinessNews[0];
+    EntertainmentNews[0];
 
   const {
     imageurl: imageurl2,
@@ -22,7 +18,7 @@ const Business = () => {
     published: published2,
     paragraphbrief: paragraphbrief2,
     author: author2,
-  } = BusinessNews[1];
+  } = EntertainmentNews[1];
 
   const {
     imageurl: imageurl3,
@@ -30,43 +26,45 @@ const Business = () => {
     published: published3,
     paragraphbrief: paragraphbrief3,
     author: author3,
-  } = BusinessNews[2];
+  } = EntertainmentNews[2];
 
   const {
     heading: heading4,
     published: published4,
     author: author4,
-  } = BusinessNews[3];
+  } = EntertainmentNews[3];
 
   return (
     <section className="category-section">
       <div className="container" data-aos="fade-up">
         <div className="section-header d-flex justify-content-between align-items-center mb-5">
-          <h2>Business</h2>
+          <h2>Entertainment</h2>
           <div>
-            <a href="category.html" className="more">
-              See All Business
-            </a>
+            <Link to="/category/entertainment" className="more">
+              See All Entertainment
+            </Link>
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-9 order-md-2">
             <div className="d-lg-flex post-entry-2">
-              <a
-                href="single-post.html"
+              <Link
+                to={`news/category/entertainment/${heading}`}
                 className="me-4 thumbnail d-inline-block mb-4 mb-lg-0"
               >
                 <img src={imageurl} alt="" className="img-fluid" />
-              </a>
+              </Link>
               <div>
                 <div className="post-meta">
-                  <span className="date">Business</span>{" "}
-                  <span className="mx-1">&bullet;</span>{" "}
+                  <span className="date">Entertainment</span>
+                  <span className="mx-1">•</span>
                   <span>{setDate(published)}</span>
                 </div>
                 <h3>
-                  <a href="single-post.html">{heading}</a>
+                  <Link to={`news/category/entertainment/${heading}`}>
+                    {heading}
+                  </Link>
                 </h3>
                 <p>{paragraphbrief}</p>
                 <div className="d-flex align-items-center author">
@@ -80,16 +78,18 @@ const Business = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="post-entry-1 border-bottom">
-                  <a href="single-post.html">
+                  <Link to={`news/category/entertainment/${heading2}`}>
                     <img src={imageurl2} alt="" className="img-fluid" />
-                  </a>
+                  </Link>
                   <div className="post-meta">
-                    <span className="date">Business</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Entertainment</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published2)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading2}</a>
+                    <Link to={`news/category/entertainment/${heading2}`}>
+                      {heading2}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author2}</span>
                   <p className="mb-4 d-block">{paragraphbrief2}</p>
@@ -97,28 +97,32 @@ const Business = () => {
 
                 <div className="post-entry-1">
                   <div className="post-meta">
-                    <span className="date">Business</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Entertainment</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published4)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading4}</a>
+                    <Link to={`news/category/entertainment/${heading4}`}>
+                      {heading4}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author4}</span>
                 </div>
               </div>
               <div className="col-lg-8">
                 <div className="post-entry-1">
-                  <a href="single-post.html">
+                  <Link to={`news/category/entertainment/${heading3}`}>
                     <img src={imageurl3} alt="" className="img-fluid" />
-                  </a>
+                  </Link>
                   <div className="post-meta">
-                    <span className="date">Business</span>{" "}
-                    <span className="mx-1">&bullet;</span>{" "}
+                    <span className="date">Entertainment</span>
+                    <span className="mx-1">•</span>
                     <span>{setDate(published3)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <a href="single-post.html">{heading3}</a>
+                    <Link to={`news/category/entertainment/${heading3}`}>
+                      {heading3}
+                    </Link>
                   </h2>
                   <span className="author mb-3 d-block">{author3}</span>
                   <p className="mb-4 d-block">{paragraphbrief3}</p>
@@ -127,8 +131,8 @@ const Business = () => {
             </div>
           </div>
           <div className="col-md-3">
-            {BusinessNews.filter((_, i) => i > 4 && i < 10).map((news) => (
-              <PostEntryBottom news={news} />
+            {EntertainmentNews.filter((_, i) => i > 4 && i < 10).map((news) => (
+              <PostEntryBottom news={news} key={news.newsid} />
             ))}
           </div>
         </div>
@@ -137,4 +141,4 @@ const Business = () => {
   );
 };
 
-export default Business;
+export default Entertainment;

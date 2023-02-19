@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { NewsContext } from "../../context/news.context";
 
 import "./posts.style.scss";
@@ -14,15 +15,15 @@ const Trending = () => {
           {finalNews
             .filter((_, i) => i < 6)
             .map((news) => {
-              const { heading, author } = news;
+              const { heading, author, newsid, category } = news;
 
               return (
-                <li>
-                  <a href="single-post.html">
+                <li key={newsid}>
+                  <Link to={`news/category/${category}/${heading}`}>
                     <span className="number">1</span>
                     <h3>{heading}</h3>
                     <span className="author">{author}</span>
-                  </a>
+                  </Link>
                 </li>
               );
             })}

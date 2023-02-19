@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { setDate } from "../..";
 import { NewsContext } from "../../context/news.context";
 import Aside from "../aside/aside.component";
@@ -6,7 +7,7 @@ import Pagination from "../pagination/pagination.component";
 
 import "../posts/posts.style.scss";
 
-const Category = () => {
+const Category = (mainCategory) => {
   const { finalNews } = useContext(NewsContext);
 
   return (
@@ -14,7 +15,7 @@ const Category = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-9" data-aos="fade-up">
-            <h3 className="category-title">Category: Business</h3>
+            <h3 className="category-title">Category: {mainCategory}</h3>
 
             {finalNews
               .filter((_, i) => i < 10)
@@ -32,17 +33,23 @@ const Category = () => {
 
                 return (
                   <div className="d-md-flex post-entry-2 half" key={newsid}>
-                    <a href="single-post.html" className="me-4 thumbnail">
+                    <Link
+                      to={`news/category/${category}/${heading}`}
+                      className="me-4 thumbnail"
+                    >
                       <img src={imageurl} alt="" className="img-fluid" />
-                    </a>
+                    </Link>
+
                     <div>
                       <div className="post-meta">
-                        <span className="date">{category[0]}</span>{" "}
-                        <span className="mx-1">&bullet;</span>{" "}
+                        <span className="date">{category[0]}</span>
+                        <span className="mx-1">•</span>
                         <span>{setDate(published)}</span>
                       </div>
                       <h3>
-                        <a href="single-post.html">{heading}</a>
+                        <Link to={`news/category/${category}/${heading}`}>
+                          {heading}
+                        </Link>
                       </h3>
                       <p>{paragraphbrief}</p>
                       <div className="d-flex align-items-center author">
