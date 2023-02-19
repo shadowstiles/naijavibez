@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { setDate } from "../..";
 import { NewsContext } from "../../context/news.context";
 import Aside from "../aside/aside.component";
@@ -7,8 +7,15 @@ import Pagination from "../pagination/pagination.component";
 
 import "../posts/posts.style.scss";
 
-const Category = (mainCategory) => {
+const Category = () => {
+  const { mainCategory } = useParams();
   const { finalNews } = useContext(NewsContext);
+
+  const categoryNews = finalNews.filter((news) => {
+    return news.category.some(
+      (category) => category.toLowerCase() === mainCategory.toLowerCase()
+    );
+  });
 
   return (
     <section>
@@ -17,7 +24,7 @@ const Category = (mainCategory) => {
           <div className="col-md-9" data-aos="fade-up">
             <h3 className="category-title">Category: {mainCategory}</h3>
 
-            {finalNews
+            {categoryNews
               .filter((_, i) => i < 10)
               .map((news) => {
                 const {

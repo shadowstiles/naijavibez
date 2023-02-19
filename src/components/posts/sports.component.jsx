@@ -8,13 +8,20 @@ import PostEntryBottom from "./post-entry-bottom.component";
 import "./posts.style.scss";
 
 const Sports = () => {
-  const { sportsNews } = useContext(NewsContext);
+  const { finalNews } = useContext(NewsContext);
+
+  const sportsNews = finalNews.filter((news) => {
+    return news.category.some(
+      (category) => category.toLowerCase() === "sports"
+    );
+  });
 
   const {
     imageurl,
     heading,
     author_imageurl,
     published,
+    newsid,
     paragraphbrief,
     author,
   } = sportsNews[0];
@@ -23,6 +30,7 @@ const Sports = () => {
     imageurl: imageurl2,
     heading: heading2,
     published: published2,
+    newsid: newsid2,
     paragraphbrief: paragraphbrief2,
     author: author2,
   } = sportsNews[1];
@@ -31,12 +39,14 @@ const Sports = () => {
     imageurl: imageurl3,
     heading: heading3,
     published: published3,
+    newsid: newsid3,
     paragraphbrief: paragraphbrief3,
     author: author3,
   } = sportsNews[2];
 
   const {
     heading: heading4,
+    newsid: newsid4,
     published: published4,
     author: author4,
   } = sportsNews[3];
@@ -57,7 +67,7 @@ const Sports = () => {
           <div className="col-md-9">
             <div className="d-lg-flex post-entry-2">
               <Link
-                to={`news/category/sports/${heading}`}
+                to={`news/sports/${newsid}`}
                 className="me-4 thumbnail mb-4 mb-lg-0 d-inline-block"
               >
                 <img src={imageurl} alt="" className="img-fluid" />
@@ -69,7 +79,7 @@ const Sports = () => {
                   <span>{setDate(published)}</span>
                 </div>
                 <h3>
-                  <Link to={`news/category/sports/${heading}`}>{heading}</Link>
+                  <Link to={`news/sports/${newsid}`}>{heading}</Link>
                 </h3>
                 <p>{paragraphbrief}</p>
                 <div className="d-flex align-items-center author">
@@ -86,7 +96,7 @@ const Sports = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="post-entry-1 border-bottom">
-                  <Link to={`news/category/sports/${heading2}`}>
+                  <Link to={`news/sports/${newsid2}`}>
                     <img src={imageurl2} alt="" className="img-fluid" />
                   </Link>
                   <div className="post-meta">
@@ -95,9 +105,7 @@ const Sports = () => {
                     <span>{setDate(published2)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/sports/${heading2}`}>
-                      {heading2}
-                    </Link>
+                    <Link to={`news/sports/${newsid2}`}>{heading2}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author2}</span>
                   <p className="mb-4 d-block">{paragraphbrief2}</p>
@@ -110,9 +118,7 @@ const Sports = () => {
                     <span>{setDate(published4)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/sports/${heading4}`}>
-                      {heading4}
-                    </Link>
+                    <Link to={`news/sports/${newsid4}`}>{heading4}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author4}</span>
                 </div>
@@ -128,9 +134,7 @@ const Sports = () => {
                     <span>{setDate(published3)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/sports/${heading3}`}>
-                      {heading3}
-                    </Link>
+                    <Link to={`news/sports/${newsid3}`}>{heading3}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author3}</span>
                   <p className="mb-4 d-block">{paragraphbrief3}</p>

@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import { createContext, useEffect, useState } from "react";
-import NewsJSON from "./Sample_Report.json";
 
-const API_URL =
-  "https://newsdata.io/api/1/news?apikey=pub_1139138757d889115c8c2c42b92f8534340ad&language=en";
+const API_URL = "https://naijavibez.cyclic.app/";
 const TIMEOUT_SEC = 10;
 const RES_PER_PAGE = 10;
 
@@ -62,11 +60,13 @@ export const NewsContext = createContext({
   pages: 1,
   resultsPerPage: RES_PER_PAGE,
   nextPage: [],
+  categories: [],
 });
 
 export const NewsProvider = ({ children }) => {
   const [newsData, setNewsData] = useState([]);
   const [newsImages, setNewsImages] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [finalNews, setFinalNews] = useState([]);
   const [submit, setSubmit] = useState(true);
   const [resultsPerPage, setResultsPerPage] = useState(RES_PER_PAGE);
@@ -108,107 +108,42 @@ export const NewsProvider = ({ children }) => {
   }, [finalNews]);
 
   useEffect(() => {
+    setSubmit(true);
+
     const generalData = async function () {
       try {
-        // const data = await AJAX(`${API_URL}`);
+        const data = await AJAX(`${API_URL}news`);
 
-        // data.message === "success";
-        if (true) {
-          // const newsImg = data.newsImages.map((img) => {
-          //   return {
-          //     newsid: img.newsid,
-          //     imageurl: img.imageurl,
-          //   };
-          // });
-          const vNews = NewsJSON.results.map((news) => {
-            // const vNews = data.results.map((news) => {
-            let {
-              title,
-              creator,
-              description,
-              pubDate,
-              content,
-              category,
-              source_id,
-            } = news;
-            const date = new Date(pubDate);
+        console.log(data);
 
-            if (!creator) creator = ["Emmanuel"];
-            const formatedNews = {
-              newsid: `${date.getTime()}${source_id}`,
-              heading: title,
-              author: creator.join(" & "),
-              paragraphbrief: description,
-              paragraphs: content,
-              category: category[0],
-              published: date.getTime(),
+        if (data.message === "success") {
+          const newsImg = data.newsImages.map((img) => {
+            return {
+              newsid: img.newsid,
+              imageurl: img.imageurl,
             };
-
-            return formatedNews;
           });
 
-          const newsImg = NewsJSON.results.map((news) => {
-            // const newsImg = data.results.map((news) => {
-            let { image_url, pubDate, source_id } = news;
-            const date = new Date(pubDate);
+          const collection = Array.from(
+            new Set(
+              data.news
+                .map((news) => news.category)
+                .flatMap((cat) => cat.toLowerCase())
+            )
+          );
 
-            if (image_url === null)
-              image_url = "../components/assets/post-landscape-1.jpg";
-
-            const imageDetails = {
-              newsid: `${date.getTime()}${source_id}`,
-              imageurl: image_url,
-            };
-
-            return imageDetails;
-          });
-
-          // setNewsData(data.vNews);
-          setNewsData(vNews);
+          setCategories(collection);
+          setNewsData(data.news);
           setNewsImages(newsImg);
-
-          setFinalNews(sortedNews(vNews, newsImg));
-          setResults(sortedNews(vNews, newsImg));
           setSubmit(false);
         }
       } catch (err) {
         //err is for developers
-        // setSubmit(false);
-        console.log(err);
+        setSubmit(false);
       }
     };
-    if (render.current) generalData();
-    render.current = false;
+    generalData();
   }, []);
-
-  // useEffect(() => {
-  //   if (false) return;
-  //   setSubmit(true);
-
-  //   const generalData = async function () {
-  //     try {
-  //       const data = await AJAX(`${API_URL}news/`);
-
-  //       console.log(data);
-
-  //       if (data.message === "success") {
-  //         const newsImg = data.newsImages.map((img) => {
-  //           return {
-  //             newsid: img.newsid,
-  //             imageurl: img.imageurl,
-  //           };
-  //         });
-  //         setNewsData(data.vNews);
-  //         setNewsImages(newsImg);
-  //         setSubmit(false);
-  //       }
-  //     } catch (err) {
-  //       //err is for developers
-  //       setSubmit(false);
-  //     }
-  //   };
-  //   generalData();
-  // }, []);
 
   const value = {
     submit,
@@ -220,6 +155,7 @@ export const NewsProvider = ({ children }) => {
     nextPage,
     results,
     pages,
+    categories,
     resultsPerPage,
   };
 

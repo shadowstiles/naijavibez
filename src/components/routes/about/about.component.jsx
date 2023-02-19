@@ -1,10 +1,15 @@
 import { Fragment } from "react";
+import { Helmet } from "react-helmet";
 
 import "../../posts/posts.style.scss";
 
 const About = () => {
   return (
     <Fragment>
+      <Helmet>
+        <title>NaijaVibez | About</title>
+        <meta name="description" content="About Naijavibez and its creators" />
+      </Helmet>
       <section>
         <div className="container" data-aos="fade-up">
           <div className="row">
@@ -80,22 +85,7 @@ const About = () => {
           <div className="row justify-content-between align-items-lg-center">
             <div className="col-lg-5 mb-4 mb-lg-0">
               <h2 className="display-4 mb-4">Latest News</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                rem eaque vel est asperiores iste pariatur placeat molestias,
-                rerum provident ea maiores debitis eum earum esse quas
-                architecto! Minima, voluptatum! Minus tempora distinctio quo
-                sint est blanditiis voluptate eos. Commodi dolore nesciunt culpa
-                adipisci nemo expedita suscipit autem dolorum rerum?
-              </p>
-              <p>
-                At magni dolore ullam odio sapiente ipsam, numquam eius minus
-                animi inventore alias quam fugit corrupti error iste laboriosam
-                dolorum culpa doloremque eligendi repellat iusto vel impedit
-                odit cum. Sequi atque molestias nesciunt rem eum pariatur
-                quibusdam deleniti saepe eius maiores porro quam, praesentium
-                ipsa deserunt laboriosam adipisci. Optio, animi!
-              </p>
+              <p>{paragraphbrief}</p>
               <p>
                 <a href="#" className="more">
                   View All Blog Posts

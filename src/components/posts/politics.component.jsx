@@ -8,20 +8,28 @@ import PostEntry from "./post-entry.component";
 import "./posts.style.scss";
 
 const Politics = () => {
-  const { PoliticsNews } = useContext(NewsContext);
+  const { finalNews } = useContext(NewsContext);
 
-  const { imageurl, heading, published, paragraphbrief, author } =
+  const PoliticsNews = finalNews.filter((news) => {
+    return news.category.some(
+      (category) => category.toLowerCase() === "politics"
+    );
+  });
+
+  const { imageurl, heading, published, paragraphbrief, author, newsid } =
     PoliticsNews[0];
 
   const {
     heading: heading2,
     published: published2,
+    newsid: newsid2,
     author: author2,
   } = PoliticsNews[1];
 
   const {
     heading: heading3,
     published: published3,
+    newsid: newsid3,
     author: author3,
   } = PoliticsNews[2];
 
@@ -49,7 +57,7 @@ const Politics = () => {
                 <span>{setDate(published)}</span>
               </div>
               <h2>
-                <Link to={`news/category/politics/${heading}`}>{heading}</Link>
+                <Link to={`news/politics/${newsid}`}>{heading}</Link>
               </h2>
               <p className="mb-4 d-block">{paragraphbrief}</p>
 
@@ -67,9 +75,7 @@ const Politics = () => {
                 <span>{setDate(published2)}</span>
               </div>
               <h2 className="mb-2">
-                <Link to={`news/category/politics/${heading2}`}>
-                  {heading2}
-                </Link>
+                <Link to={`news/politics/${newsid2}`}>{heading2}</Link>
               </h2>
               <span className="author mb-3 d-block">{author2}</span>
             </div>
@@ -81,9 +87,7 @@ const Politics = () => {
                 <span>{setDate(published3)}</span>
               </div>
               <h2 className="mb-2">
-                <Link to={`news/category/politics/${heading3}`}>
-                  {heading3}
-                </Link>
+                <Link to={`news/politics/${newsid3}`}>{heading3}</Link>
               </h2>
               <span className="author mb-3 d-block">{author3}</span>
             </div>

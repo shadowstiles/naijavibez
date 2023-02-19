@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { setDate } from "../..";
 import { NewsContext } from "../../context/news.context";
 import Aside from "../aside/aside.component";
@@ -8,10 +9,14 @@ import "../pagination/pagination.styles.scss";
 import "../posts/posts.style.scss";
 
 const SearchResult = () => {
-  const { nextPage } = useContext(NewsContext);
+  const { nextPage, query } = useContext(NewsContext);
 
   return (
     <section id="search-result" className="search-result">
+      <Helmet>
+        <title>Search | {query}</title>
+        <meta name="description" content={`Search result for "${query}"`} />
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-md-9">

@@ -1,8 +1,13 @@
+import { Helmet } from "react-helmet";
 import "./contacts.style.scss";
 
 const Contact = () => {
   return (
     <section className="section contact" id="contact">
+      <Helmet>
+        <title>NaijaVibez | Contacts</title>
+        <meta name="description" content="Contact Naijavibez" />
+      </Helmet>
       <div className="contact-title">
         <h1 className="title">Contact us</h1>
       </div>
@@ -32,7 +37,9 @@ const Contact = () => {
           </div>
           <h3>Email</h3>
           <p>
-            <a href="mailto:curtisazizacurtis@gmail.com">curtisazizacurtis@gmail.com</a>
+            <a href="mailto:curtisazizacurtis@gmail.com">
+              curtisazizacurtis@gmail.com
+            </a>
           </p>
         </div>
       </div>

@@ -46,18 +46,12 @@ const Slide = () => {
                 {finalNews
                   .filter((_, i) => i < 6)
                   .map((news) => {
-                    const {
-                      heading,
-                      category,
-                      paragraphbrief,
-                      imageurl,
-                      newsid,
-                    } = news;
+                    const { heading, paragraphbrief, imageurl, newsid } = news;
 
                     return (
                       <SwiperSlide className="swiper-slide" key={newsid}>
                         <Link
-                          to={`news/category/${category}/${heading}`}
+                          to={`news/${newsid}/${heading}`}
                           className="img-bg d-flex align-items-end"
                           style={{ backgroundImage: `url(${imageurl} )` }}
                         >

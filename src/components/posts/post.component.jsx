@@ -11,8 +11,15 @@ import { Link } from "react-router-dom";
 const Post = () => {
   const { finalNews } = useContext(NewsContext);
 
-  const { category, published, heading, paragrahpbrief, author, imageurl } =
-    finalNews[0];
+  const {
+    category,
+    published,
+    heading,
+    paragrahpbrief,
+    author,
+    imageurl,
+    newsid,
+  } = finalNews[0];
 
   return (
     <section id="posts" className="posts">
@@ -20,7 +27,7 @@ const Post = () => {
         <div className="row g-5">
           <div className="col-lg-4">
             <div className="post-entry-1 lg">
-              <Link to={`news/category/${category}/${heading}`}>
+              <Link to={`news/${category}/${newsid}`}>
                 <img src={imageurl} alt="" className="img-fluid" />
               </Link>
 
@@ -30,9 +37,7 @@ const Post = () => {
                 <span>{setDate(published)}</span>
               </div>
               <h2>
-                <Link to={`news/category/${category}/${heading}`}>
-                  {heading}
-                </Link>
+                <Link to={`news/${category}/${newsid}`}>{heading}</Link>
               </h2>
               <p className="mb-4 d-block">{paragrahpbrief}</p>
 

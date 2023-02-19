@@ -1,10 +1,27 @@
+import { useContext } from "react";
+import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 import { setDate } from "../..";
+import { NewsContext } from "../../context/news.context";
 import Aside from "../aside/aside.component";
 
 import "../posts/posts.style.scss";
 
-const SinglePost = ({ news }) => {
-  const { category, heading, published, imageurl, paragraphs } = news;
+const SinglePost = () => {
+  const { newsid } = useParams();
+  const { finalNews } = useContext(NewsContext);
+
+  const news = finalNews.filter((news) => news.newsid === newsid);
+
+  const {
+    category,
+    heading,
+    published,
+    imageurl,
+    paragraphs,
+    paragrahbrief,
+    keywords,
+  } = news;
 
   return (
     <section className="single-post-content">
@@ -12,8 +29,13 @@ const SinglePost = ({ news }) => {
         <div className="row">
           <div className="col-md-9 post-content" data-aos="fade-up">
             <div className="single-post">
+              <Helmet>
+                <title>{heading}</title>
+                <meta name="description" content={paragrahbrief} />
+                <meta name="keywords" content={keywords.split(" , ")} />
+              </Helmet>
               <div className="post-meta">
-                <span className="date">{category}</span>{" "}
+                <span className="date">{category}</span>
                 <span className="mx-1">•</span>{" "}
                 <span>{setDate(published)}</span>
               </div>

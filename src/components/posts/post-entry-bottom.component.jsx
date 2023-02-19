@@ -4,7 +4,7 @@ import { setDate } from "../..";
 import "./posts.style.scss";
 
 const PostEntryBottom = ({ news }) => {
-  const { author, heading, published, category } = news;
+  const { author, heading, published, category, newsid } = news;
 
   return (
     <div className="post-entry-1 border-bottom">
@@ -13,7 +13,7 @@ const PostEntryBottom = ({ news }) => {
         <span>{setDate(published)}</span>
       </div>
       <h2 className="mb-2">
-        <Link to={`news/category/${category}/${heading}`}>{heading}</Link>
+        <Link to={`news/${category}/${newsid}`}>{heading}</Link>
       </h2>
       <span className="author mb-3 d-block">{author}</span>
     </div>

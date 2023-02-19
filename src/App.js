@@ -34,7 +34,7 @@ const useMediaQuery = (query) => {
 };
 
 const App = () => {
-  const { submit } = useContext(NewsContext);
+  const { submit, categories } = useContext(NewsContext);
   const isMobile = useMediaQuery("(max-width: 50em)");
 
   useEffect(() => {
@@ -82,9 +82,19 @@ const App = () => {
           }
         />
         <Route path="about" element={<About />} />
-        <Route path="news" element={<SinglePost />} />
-        <Route path="search" element={<SearchResult />} />
-        <Route path="category" element={<Category />} />
+        <Route path="news/" element={submit ? <Spinner /> : <SinglePost />}>
+          {categories.map((category) => (
+            <Route path={`${category}/:newsid`} />
+          ))}
+          <Route
+            path=":mainCategory"
+            element={submit ? <Spinner /> : <Category />}
+          />
+          <Route
+            path="search"
+            element={submit ? <Spinner /> : <SearchResult />}
+          />
+        </Route>
         <Route path="contact" element={<Contact />} />
       </Route>
     </Routes>

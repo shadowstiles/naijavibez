@@ -7,9 +7,15 @@ import PostEntryBottom from "./post-entry-bottom.component";
 import "./posts.style.scss";
 
 const Entertainment = () => {
-  const { EntertainmentNews } = useContext(NewsContext);
+  const { finalNews } = useContext(NewsContext);
 
-  const { imageurl, heading, published, paragraphbrief, author } =
+  const EntertainmentNews = finalNews.filter((news) => {
+    return news.category.some(
+      (category) => category.toLowerCase() === "entertainment"
+    );
+  });
+
+  const { imageurl, heading, published, paragraphbrief, author, newsid } =
     EntertainmentNews[0];
 
   const {
@@ -17,6 +23,7 @@ const Entertainment = () => {
     heading: heading2,
     published: published2,
     paragraphbrief: paragraphbrief2,
+    newsid: newsid2,
     author: author2,
   } = EntertainmentNews[1];
 
@@ -24,6 +31,7 @@ const Entertainment = () => {
     imageurl: imageurl3,
     heading: heading3,
     published: published3,
+    newsid: newsid3,
     paragraphbrief: paragraphbrief3,
     author: author3,
   } = EntertainmentNews[2];
@@ -31,6 +39,7 @@ const Entertainment = () => {
   const {
     heading: heading4,
     published: published4,
+    newsid: newsid4,
     author: author4,
   } = EntertainmentNews[3];
 
@@ -40,7 +49,7 @@ const Entertainment = () => {
         <div className="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Entertainment</h2>
           <div>
-            <Link to="/category/entertainment" className="more">
+            <Link to="/entertainment" className="more">
               See All Entertainment
             </Link>
           </div>
@@ -50,7 +59,7 @@ const Entertainment = () => {
           <div className="col-md-9 order-md-2">
             <div className="d-lg-flex post-entry-2">
               <Link
-                to={`news/category/entertainment/${heading}`}
+                to={`news/entertainment/${newsid}`}
                 className="me-4 thumbnail d-inline-block mb-4 mb-lg-0"
               >
                 <img src={imageurl} alt="" className="img-fluid" />
@@ -62,9 +71,7 @@ const Entertainment = () => {
                   <span>{setDate(published)}</span>
                 </div>
                 <h3>
-                  <Link to={`news/category/entertainment/${heading}`}>
-                    {heading}
-                  </Link>
+                  <Link to={`news/entertainment/${newsid}`}>{heading}</Link>
                 </h3>
                 <p>{paragraphbrief}</p>
                 <div className="d-flex align-items-center author">
@@ -78,7 +85,7 @@ const Entertainment = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="post-entry-1 border-bottom">
-                  <Link to={`news/category/entertainment/${heading2}`}>
+                  <Link to={`news/entertainment/${newsid2}`}>
                     <img src={imageurl2} alt="" className="img-fluid" />
                   </Link>
                   <div className="post-meta">
@@ -87,9 +94,7 @@ const Entertainment = () => {
                     <span>{setDate(published2)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/entertainment/${heading2}`}>
-                      {heading2}
-                    </Link>
+                    <Link to={`news/entertainment/${newsid2}`}>{heading2}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author2}</span>
                   <p className="mb-4 d-block">{paragraphbrief2}</p>
@@ -102,16 +107,14 @@ const Entertainment = () => {
                     <span>{setDate(published4)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/entertainment/${heading4}`}>
-                      {heading4}
-                    </Link>
+                    <Link to={`news/entertainment/${newsid4}`}>{heading4}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author4}</span>
                 </div>
               </div>
               <div className="col-lg-8">
                 <div className="post-entry-1">
-                  <Link to={`news/category/entertainment/${heading3}`}>
+                  <Link to={`news/entertainment/${newsid3}`}>
                     <img src={imageurl3} alt="" className="img-fluid" />
                   </Link>
                   <div className="post-meta">
@@ -120,9 +123,7 @@ const Entertainment = () => {
                     <span>{setDate(published3)}</span>
                   </div>
                   <h2 className="mb-2">
-                    <Link to={`news/category/entertainment/${heading3}`}>
-                      {heading3}
-                    </Link>
+                    <Link to={`news/entertainment/${newsid3}`}>{heading3}</Link>
                   </h2>
                   <span className="author mb-3 d-block">{author3}</span>
                   <p className="mb-4 d-block">{paragraphbrief3}</p>
