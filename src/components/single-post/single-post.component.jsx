@@ -13,6 +13,8 @@ const SinglePost = () => {
 
   const news = finalNews.filter((news) => news.newsid === newsid);
 
+  if (news.length === 0) return;
+
   const {
     category,
     heading,
@@ -21,19 +23,21 @@ const SinglePost = () => {
     paragraphs,
     paragrahbrief,
     keywords,
-  } = news;
+  } = news[0];
+
+  console.log(keywords);
 
   return (
     <section className="single-post-content">
+      <Helmet>
+        <title>{heading}</title>
+        <meta name="description" content={paragrahbrief} />
+        <meta name="keywords" content={keywords.join(" , ")} />
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-md-9 post-content" data-aos="fade-up">
             <div className="single-post">
-              <Helmet>
-                <title>{heading}</title>
-                <meta name="description" content={paragrahbrief} />
-                <meta name="keywords" content={keywords.split(" , ")} />
-              </Helmet>
               <div className="post-meta">
                 <span className="date">{category}</span>
                 <span className="mx-1">•</span>{" "}

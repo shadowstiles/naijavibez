@@ -16,6 +16,8 @@ const Politics = () => {
     );
   });
 
+  if (PoliticsNews.length < 4) return;
+
   const { imageurl, heading, published, paragraphbrief, author, newsid } =
     PoliticsNews[0];
 

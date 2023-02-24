@@ -15,6 +15,8 @@ const Entertainment = () => {
     );
   });
 
+  if (Entertainment.length < 4) return;
+
   const { imageurl, heading, published, paragraphbrief, author, newsid } =
     EntertainmentNews[0];
 

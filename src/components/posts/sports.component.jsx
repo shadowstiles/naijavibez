@@ -16,6 +16,8 @@ const Sports = () => {
     );
   });
 
+  if (sportsNews.length < 4) return;
+
   const {
     imageurl,
     heading,

@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
 import { setDate } from "../..";
 
 import "./footer.style.scss";
 
 const FooterNews = ({ news }) => {
-  const { imageurl, category, published, heading } = news;
+  const { imageurl, category, published, heading, newsid } = news;
 
   return (
     <li>
-      <a href="single-post.html" className="d-flex align-items-center">
+      <Link
+        to={`news/${category[0]}/${newsid}`}
+        className="d-flex align-items-center"
+      >
         <img src={imageurl} alt="" className="img-fluid me-3" />
         <div>
           <div className="post-meta d-block">
@@ -17,7 +21,7 @@ const FooterNews = ({ news }) => {
           </div>
           <span>{heading}</span>
         </div>
-      </a>
+      </Link>
     </li>
   );
 };

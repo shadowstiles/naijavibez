@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import AOS from "aos";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +16,6 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { NewsProvider } from "./context/news.context";
-import { Helmet } from "react-helmet";
 
 export const setDate = (publish) => {
   // prettier-ignore
@@ -56,18 +56,6 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <NewsProvider>
-        <Helmet>
-          <title>NaijaVibez</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta
-            name="description"
-            content="Your source for the latest, trending gossips and entertainment in Nigeria"
-          />
-          <meta
-            name="keywords"
-            content="gossip, entertainment, news, politics, trending topics, latest"
-          />
-        </Helmet>
         <App />
       </NewsProvider>
     </BrowserRouter>

@@ -8,8 +8,17 @@ import "../posts/posts.style.scss";
 import { Link } from "react-router-dom";
 
 const Aside = () => {
-  const { latestNews, popularNews, trendingNews, categories } =
-    useContext(NewsContext);
+  const { finalNews, categories } = useContext(NewsContext);
+
+  const trendingNews = finalNews.filter((news) => {
+    return news.tag.some((category) => category.toLowerCase() === "trending");
+  });
+
+  const popularNews = finalNews.filter((news) => {
+    return news.tag.some((category) => category.toLowerCase() === "popular");
+  });
+
+  if (trendingNews.length === 0 || popularNews.length === 0) return;
 
   return (
     <Fragment>
@@ -96,7 +105,7 @@ const Aside = () => {
             role="tabpanel"
             aria-labelledby="pills-latest-tab"
           >
-            {latestNews
+            {finalNews
               .filter((_, i) => i < 6)
               .map((news) => (
                 <PostEntryBottom news={news} />

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+
 import { createContext, useEffect, useState } from "react";
 
 const API_URL = "https://naijavibez.cyclic.app/";
@@ -74,7 +74,6 @@ export const NewsProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const [pages, setPages] = useState(1);
   const [nextPage, setNextPage] = useState([]);
-  const render = useRef(true);
 
   const getSearchResultsPage = function (page = pages) {
     setPages(page);
@@ -98,11 +97,6 @@ export const NewsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (Object.entries(newsData).length === 0) return;
-    if (!render.current) setFinalNews(sortedNews(newsData, newsImages));
-  }, [newsData, newsImages]);
-
-  useEffect(() => {
     if (Object.entries(finalNews).length === 0) return;
     setNextPage(finalNews.filter((_, i) => i < 10));
   }, [finalNews]);
@@ -113,8 +107,6 @@ export const NewsProvider = ({ children }) => {
     const generalData = async function () {
       try {
         const data = await AJAX(`${API_URL}news`);
-
-        console.log(data);
 
         if (data.message === "success") {
           const newsImg = data.newsImages.map((img) => {
@@ -128,11 +120,13 @@ export const NewsProvider = ({ children }) => {
             new Set(
               data.news
                 .map((news) => news.category)
-                .flatMap((cat) => cat.toLowerCase())
+                .flat()
+                .map((category) => category.toLowerCase())
             )
           );
 
           setCategories(collection);
+          setFinalNews(sortedNews(data.news, newsImg));
           setNewsData(data.news);
           setNewsImages(newsImg);
           setSubmit(false);

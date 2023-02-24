@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { NewsContext } from "../../../context/news.context";
 
 import "../../posts/posts.style.scss";
 
 const About = () => {
+  const { finalNews } = useContext(NewsContext);
+  const { paragraphbrief } = finalNews[0];
+
   return (
     <Fragment>
       <Helmet>

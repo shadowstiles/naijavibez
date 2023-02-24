@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 const Post = () => {
   const { finalNews } = useContext(NewsContext);
 
+  if (finalNews === 0) return;
+
   const {
     category,
     published,

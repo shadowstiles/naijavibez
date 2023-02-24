@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { NewsContext } from "../../context/news.context";
 import FooterNews from "./footer-news.component";
 
@@ -13,7 +14,7 @@ const Footer = () => {
         <div className="container">
           <div className="row g-5">
             <div className="col-lg-4">
-              <h3 className="footer-heading">About NaijaTrend</h3>
+              <h3 className="footer-heading">About Naijavibez</h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
                 ab, perspiciatis beatae autem deleniti voluptate nulla a
@@ -21,23 +22,18 @@ const Footer = () => {
                 officiis qui aliquid blanditiis omnis quae. Explicabo?
               </p>
               <p>
-                <a href="about.html" className="footer-link-more">
+                <Link to="/about" className="footer-link-more">
                   Learn More
-                </a>
+                </Link>
               </p>
             </div>
             <div className="col-6 col-lg-2">
               <h3 className="footer-heading">Navigation</h3>
               <ul className="footer-links list-unstyled">
                 <li>
-                  <a href="index.html">
+                  <Link to="/">
                     <i className="bi bi-chevron-right"></i> Home
-                  </a>
-                </li>
-                <li>
-                  <a href="index.html">
-                    <i className="bi bi-chevron-right"></i> Blog
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="category.html">
@@ -45,14 +41,14 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="about.html">
+                  <Link to="/about">
                     <i className="bi bi-chevron-right"></i> About us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="contact.html">
+                  <Link to="/contact">
                     <i className="bi bi-chevron-right"></i> Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -124,7 +120,7 @@ const Footer = () => {
               <div className="copyright">
                 © Copyright{" "}
                 <strong>
-                  <span>NaijaTrend</span>
+                  <span>Naijavibez</span>
                 </strong>
                 . All Rights Reserved
               </div>

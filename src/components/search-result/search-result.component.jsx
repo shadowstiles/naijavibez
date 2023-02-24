@@ -11,6 +11,9 @@ import "../posts/posts.style.scss";
 const SearchResult = () => {
   const { nextPage, query } = useContext(NewsContext);
 
+  if (nextPage === 0)
+    return <h2 className="category-title">No Search Results</h2>;
+
   return (
     <section id="search-result" className="search-result">
       <Helmet>

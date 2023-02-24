@@ -11,6 +11,8 @@ const Trending = () => {
     return news.tag.some((category) => category.toLowerCase() === "trending");
   });
 
+  if (trendingPost === 0) return;
+
   return (
     <div className="col-lg-4">
       <div className="trending">

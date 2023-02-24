@@ -1,5 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import "./App.scss";
 
@@ -17,6 +18,7 @@ import Politics from "./components/posts/politics.component";
 import SinglePost from "./components/single-post/single-post.component";
 import SearchResult from "./components/search-result/search-result.component";
 import Category from "./components/category/category.component";
+import ErrorPage from "./components/routes/error/errorpage.component";
 
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
